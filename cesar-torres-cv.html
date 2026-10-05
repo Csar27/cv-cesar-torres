@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230f1c2a'/><text x='32' y='43' font-family='monospace' font-size='28' font-weight='700' text-anchor='middle' fill='%23f2b83a'>CT</text></svg>">
+<title>César Torres Guerrero | Desarrollador Full Stack</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f4f6f8;--surface:#fff;--ink:#0f1c2a;--muted:#55636f;--line:#d8dee4;--accent:#0b6e8a;--sun:#d9930d;--code:#0d1b26;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#09131c;--surface:#101f2b;--ink:#eaf0f4;--muted:#92a4b2;--line:#1f3344;--accent:#4cc2d8;--sun:#f2b83a;--code:#060f16}}
+:root[data-theme="dark"]{--bg:#09131c;--surface:#101f2b;--ink:#eaf0f4;--muted:#92a4b2;--line:#1f3344;--accent:#4cc2d8;--sun:#f2b83a;--code:#060f16}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 60px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding:0 1.25rem}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--sun);z-index:10}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+nav .wrap{display:flex;align-items:center;gap:1.1rem;height:54px;overflow-x:auto}
+nav a{text-decoration:none;color:var(--muted);font-size:.95rem;white-space:nowrap}
+nav a:hover{color:var(--accent)}
+nav .logo{font:600 .95rem "JetBrains Mono",monospace;color:var(--accent)}
+nav button{margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:.3rem .8rem;cursor:pointer;font:inherit;font-size:.9rem}
+header{display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;align-items:center;padding:4rem 0 3.5rem}
+h1{font-size:clamp(2.2rem,6.5vw,3.8rem);font-weight:800;letter-spacing:-.03em}
+.role{font-size:1.15rem;color:var(--accent);font-weight:500;margin:.9rem 0 1.2rem}
+.lead{color:var(--muted);max-width:52ch}
+.btns{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+.btn{display:inline-block;padding:.7rem 1.25rem;border-radius:8px;text-decoration:none;font:500 1rem "IBM Plex Sans",sans-serif;border:2px solid var(--ink);background:none;color:var(--ink);cursor:pointer}
+.btn.main{background:var(--ink);color:var(--bg)}
+.btn:hover{border-color:var(--accent)}
+.editor{background:var(--code);border-radius:12px;border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.18);overflow:hidden}
+.ebar{display:flex;align-items:center;gap:.4rem;padding:.65rem .9rem;background:rgba(255,255,255,.05);font:.78rem "JetBrains Mono",monospace;color:#8fa3b2}
+.ebar i{width:10px;height:10px;border-radius:50%;background:#ff5f56}.ebar i:nth-child(2){background:#ffbd2e}.ebar i:nth-child(3){background:#27c93f}
+.ebar span{margin-left:.6rem}
+pre{margin:0;padding:1rem 1.1rem;min-height:340px;font:400 .85rem/1.7 "JetBrains Mono",monospace;color:#d6e2ea;white-space:pre-wrap;overflow-x:auto}
+.k{color:#c792ea}.t{color:#4cc2d8}.s{color:#a5d6a7}.n{color:#f2b83a}.c{color:#6b8294}
+.cur{display:inline-block;width:8px;height:1em;background:#f2b83a;vertical-align:text-bottom;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:1.6rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats b{display:block;font:800 2.2rem "Bricolage Grotesque",sans-serif;color:var(--accent)}
+.stats span{color:var(--muted);font-size:.9rem}
+section{padding:3.5rem 0}
+h2{font-size:1.9rem;margin-bottom:1.8rem}
+h2::before{content:"// ";font:500 1.3rem "JetBrains Mono",monospace;color:var(--sun)}
+.tl{position:relative;margin-left:.5rem;padding-left:1.8rem;border-left:2px solid var(--line)}
+.job{position:relative;padding-bottom:2rem;opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.job.in{opacity:1;transform:none}
+.job::before{content:"";position:absolute;left:calc(-1.8rem - 7px);top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.date{font:.8rem "JetBrains Mono",monospace;color:var(--muted)}
+h3{font-size:1.25rem;margin-top:.2rem}
+.co{color:var(--accent);font-weight:500}
+ul{margin:.6rem 0 0;padding-left:1.1rem;color:var(--muted)}
+li{margin:.25rem 0}
+.prev{color:var(--muted)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.2rem}
+.card h3{font-size:1rem;margin:0 0 .8rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tags span{border:1px solid var(--line);border-radius:6px;padding:.15rem .6rem;font:.82rem "JetBrains Mono",monospace;transition:border-color .2s,color .2s}
+.tags span:hover{border-color:var(--accent);color:var(--accent)}
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.8rem;list-style:none;padding:0;color:var(--ink)}
+.edu li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.8rem 1rem;margin:0}
+.edu small{display:block;color:var(--muted)}
+footer{padding:3.5rem 0 4rem;border-top:1px solid var(--line)}
+.contact a.row{display:block;font-size:1.2rem;margin:.4rem 0;text-decoration:none;font-weight:500}
+.contact a.row:hover{color:var(--accent)}
+@media(max-width:760px){header{grid-template-columns:1fr;padding-top:2.5rem}pre{min-height:320px;font-size:.78rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cur{animation:none}.job{opacity:1;transform:none;transition:none}}
+.sk{margin:.7rem 0}.skt{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:.3rem}.skt b{font:500 .82rem "JetBrains Mono",monospace;color:var(--accent)}
+.trk{height:7px;background:var(--line);border-radius:99px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--sun));border-radius:99px;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.note{color:var(--muted);font-size:.85rem;margin-top:1rem}
+@media(prefers-reduced-motion:reduce){.fill{transition:none}}
+.port{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+.pc{display:flex;flex-direction:column;gap:.6rem;text-decoration:none;transition:border-color .2s,transform .2s}
+.pc:hover{border-color:var(--accent);transform:translateY(-3px)}
+.pc h3{margin:0}.pc p{margin:0;color:var(--muted)}
+.pc .go{margin-top:auto;font:500 .85rem "JetBrains Mono",monospace;color:var(--accent)}
+.ico{font:700 1.1rem "JetBrains Mono",monospace;color:var(--sun)}
+.sub{margin:2.5rem 0 1.2rem;font-size:1.3rem}
+.pj{display:flex;flex-direction:column;gap:.7rem}.pj h3{margin:0}.pj p{margin:0;color:var(--muted)}
+.lks{margin-top:auto;display:flex;gap:1.2rem;padding-top:.4rem}
+.lks a{font:500 .85rem "JetBrains Mono",monospace;color:var(--accent);text-decoration:none}.lks a:hover{text-decoration:underline}
+.i{width:1.15em;height:1.15em;flex:none}.i.s{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.i.f{fill:currentColor}
+.btn,nav button,.lks a,.contact a.row{display:inline-flex;align-items:center;gap:.5rem}
+.contact a.row{display:flex}.ico .i{width:1.6rem;height:1.6rem;color:var(--sun)}
+.btn:hover .i,.lks a:hover .i{transform:translateY(-1px)}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav><div class="wrap">
+<span class="logo">&lt;CT /&gt;</span>
+<a href="#experiencia">Experiencia</a><a href="#portafolio">Portafolio</a><a href="#agentes">Agentes IA</a><a href="#habilidades">Habilidades</a><a href="#educacion">Educación</a><a href="#contacto">Contacto</a>
+<button id="theme" type="button" aria-label="Cambiar tema"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg><span class="lbl">Tema</span></button>
+</div></nav>
+
+<main class="wrap">
+<header>
+<div>
+<h1>César Torres Guerrero</h1>
+<p class="role">Ingeniero de Sistemas · Desarrollador Full Stack</p>
+<p class="lead">Más de 7 años creando soluciones web corporativas y escalables: servicios en .NET, interfaces en Angular y publicación en Azure. Aprovecho la IA para agilizar tareas y entregar con rapidez.</p>
+<div class="btns">
+<a class="btn main" href="mailto:c-sar-torres@hotmail.com"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span class="lbl">Contactarme</span></a>
+<a class="btn" href="https://github.com/Csar27?tab=repositories" target="_blank" rel="noopener"><svg class="i f" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg><span class="lbl">GitHub</span></a>
+<a class="btn" href="https://www.linkedin.com/in/c%C3%A9sar-guillermo-torres-guerrero-61134b199/" target="_blank" rel="noopener"><svg class="i f" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg><span class="lbl">LinkedIn</span></a>
+<button class="btn" id="copy" type="button"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span class="lbl">Copiar correo</span></button>
+</div>
+</div>
+<div class="editor" aria-label="Resumen en código">
+<div class="ebar"><i></i><i></i><i></i><span>CesarTorres.cs</span></div>
+<pre id="code" aria-live="off"></pre>
+</div>
+</header>
+
+<div class="stats">
+<div><b>7+</b><span>años de experiencia</span></div>
+<div><b>8</b><span>empresas</span></div>
+<div><b>CI/CD</b><span>Azure DevOps y Docker</span></div>
+</div>
+
+<section id="experiencia">
+<h2>Experiencia</h2>
+<div class="tl">
+<div class="job"><div class="date">Abr 2024 – Jul 2026</div><h3>Software Developer</h3><div class="co">APERCE</div>
+<ul><li>Sistemas web con Angular y servicios REST en .NET Core bajo arquitectura limpia.</li><li>Workers y tareas programadas, además de flujos potenciados con IA.</li><li>Contenedores Docker y publicación en Azure mediante pipelines CI/CD en Azure DevOps.</li></ul></div>
+<div class="job"><div class="date">Sep 2023 – Mar 2024</div><h3>Analista Desarrollador Semisenior</h3><div class="co">ASESOFTWARE</div>
+<ul><li>Capa visual modular en Angular y lógica de servidor en .NET Core.</li><li>Workers que elevan la productividad operativa y microservicios en contenedores.</li></ul></div>
+<div class="job"><div class="date">Ago 2022 – Ago 2023</div><h3>Técnico Semisenior</h3><div class="co">SOAINT</div>
+<ul><li>Soluciones con Angular y React; servidor escalable en .NET.</li><li>Piezas reutilizables y conexión con servicios externos.</li></ul></div>
+<div class="job"><div class="date">Oct 2020 – May 2022</div><h3>Desarrollador .NET</h3><div class="co">VIVA 1ª IPS</div>
+<ul><li>Interfaces con Angular Material y endpoints REST con login y control de permisos.</li><li>Mejora de velocidad, testeo y corrección de errores.</li></ul></div>
+<div class="job"><div class="date">2018 – 2020</div><h3>Inicio de carrera</h3><div class="co">TeamLogix · Banco Serfinanza · Atlantic BPO</div>
+<p class="prev">Traslado de PL/SQL a C#, informes y consultas SQL, asistencia técnica y construcción de programas web y de escritorio.</p></div>
+</div>
+</section>
+
+<section id="portafolio">
+<h2>Portafolio</h2>
+<div class="port">
+<a class="card pc" href="https://github.com/Csar27?tab=repositories" target="_blank" rel="noopener"><span class="ico"><svg class="i f" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></span><h3>GitHub</h3><p>Repositorios y trabajos de código; una muestra de mi forma de programar.</p><span class="go">github.com/Csar27 →</span></a>
+<a class="card pc" href="https://www.linkedin.com/in/c%C3%A9sar-guillermo-torres-guerrero-61134b199/" target="_blank" rel="noopener"><span class="ico"><svg class="i f" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></span><h3>LinkedIn</h3><p>Recorrido laboral, recomendaciones y contactos del sector.</p><span class="go">Ver perfil →</span></a>
+</div>
+<h3 class="sub">Proyectos destacados</h3>
+<div class="port">
+<div class="card pj"><h3>HablaChat</h3><p>Mensajería en tiempo real con salas, historial, lista de conectados, aviso de escritura y tema claro u oscuro.</p><div class="tags"><span>React</span><span>Vite</span><span>Socket.IO</span><span>Express</span><span>SQLite</span><span>Tailwind</span></div><div class="lks"><a href="https://github.com/Csar27/hablachat" target="_blank" rel="noopener"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4"/></svg><span>Código</span></a></div></div>
+<div class="card pj"><h3>Transacciones · Interfaz</h3><p>Panel para registrar solicitudes con monto y vigencia y llevarlas hasta su estado final, con modo oscuro accesible y pruebas.</p><div class="tags"><span>React</span><span>Vite</span><span>TanStack Query</span><span>Zod</span><span>Vitest</span></div><div class="lks"><a href="https://github.com/Csar27/transacciones-front" target="_blank" rel="noopener"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4"/></svg><span>Código</span></a></div></div>
+<div class="card pj"><h3>Transacciones · Servicio</h3><p>Servicio por capas que gobierna el ciclo de vida de las solicitudes, con tareas en segundo plano y 81 pruebas automáticas.</p><div class="tags"><span>.NET 8</span><span>EF Core</span><span>SQL Server</span><span>Azure Functions</span><span>xUnit</span></div><div class="lks"><a href="https://github.com/Csar27/transacciones-back" target="_blank" rel="noopener"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4"/></svg><span>Código</span></a></div></div>
+<div class="card pj"><h3>Cartera · Gestión de pagos</h3><p>Control de gastos personales en pesos colombianos: gráfico mensual, categorías propias, exportación CSV e inicio de sesión.</p><div class="tags"><span>JavaScript</span><span>Firebase</span><span>Firestore</span><span>Docker</span></div><div class="lks"><a href="https://github.com/Csar27/Gestion-Pagos-Web" target="_blank" rel="noopener"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4"/></svg><span>Código</span></a><a href="https://gestion-pagos-web.vercel.app" target="_blank" rel="noopener"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg><span>Ver demo</span></a></div></div>
+<div class="card pj"><h3>Gastos App</h3><p>Aplicación móvil para el presupuesto mensual: salario, egresos, filtros por fecha y exportación a Excel.</p><div class="tags"><span>Flutter</span><span>Dart</span><span>Provider</span></div><div class="lks"><a href="https://github.com/Csar27/gastos_app" target="_blank" rel="noopener"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4"/></svg><span>Código</span></a></div></div>
+</div>
+</section>
+
+<section id="agentes">
+<h2>Agentes de IA</h2>
+<div class="skills">
+<div class="card"><h3>Creación de agentes</h3><p class="prev">Diseño de asistentes inteligentes que resuelven labores de programación y flujos internos, definiendo su función, pautas y recursos.</p></div>
+<div class="card"><h3>Entrenamiento</h3><p class="prev">Afinación continua mediante ejemplos y validaciones para lograr respuestas coherentes.</p></div>
+<div class="card"><h3>Skills y comandos</h3><p class="prev">Capacidades y atajos a medida que instruyen al asistente en procesos repetibles.</p></div>
+<div class="card"><h3>MCPs</h3><p class="prev">Enlace del asistente con las plataformas de uso diario a través de servidores MCP.</p><div class="tags" style="margin-top:.8rem"><span>GitHub</span><span>Figma</span><span>Azure</span></div></div>
+</div>
+</section>
+
+<section id="habilidades">
+<h2>Habilidades</h2>
+<div class="skills">
+<div class="card"><h3>Backend</h3>
+<div class="sk"><div class="skt"><span>.NET Core / C#</span><b>90%</b></div><div class="trk"><div class="fill" data-v="90"></div></div></div>
+<div class="sk"><div class="skt"><span>SQL Server</span><b>85%</b></div><div class="trk"><div class="fill" data-v="85"></div></div></div>
+<div class="sk"><div class="skt"><span>Node.js</span><b>55%</b></div><div class="trk"><div class="fill" data-v="55"></div></div></div>
+<div class="sk"><div class="skt"><span>Python</span><b>50%</b></div><div class="trk"><div class="fill" data-v="50"></div></div></div>
+</div>
+<div class="card"><h3>Frontend</h3>
+<div class="sk"><div class="skt"><span>Angular</span><b>90%</b></div><div class="trk"><div class="fill" data-v="90"></div></div></div>
+<div class="sk"><div class="skt"><span>JavaScript</span><b>80%</b></div><div class="trk"><div class="fill" data-v="80"></div></div></div>
+<div class="sk"><div class="skt"><span>React</span><b>60%</b></div><div class="trk"><div class="fill" data-v="60"></div></div></div>
+</div>
+<div class="card"><h3>Datos, nube y DevOps</h3>
+<div class="sk"><div class="skt"><span>Azure y Azure DevOps</span><b>75%</b></div><div class="trk"><div class="fill" data-v="75"></div></div></div>
+<div class="sk"><div class="skt"><span>Docker</span><b>75%</b></div><div class="trk"><div class="fill" data-v="75"></div></div></div>
+<div class="sk"><div class="skt"><span>MySQL</span><b>65%</b></div><div class="trk"><div class="fill" data-v="65"></div></div></div>
+<div class="sk"><div class="skt"><span>MongoDB</span><b>55%</b></div><div class="trk"><div class="fill" data-v="55"></div></div></div>
+</div>
+<div class="card"><h3>Método e IA</h3>
+<div class="sk"><div class="skt"><span>SCRUM</span><b>85%</b></div><div class="trk"><div class="fill" data-v="85"></div></div></div>
+<div class="sk"><div class="skt"><span>Clean Architecture</span><b>80%</b></div><div class="trk"><div class="fill" data-v="80"></div></div></div>
+<div class="sk"><div class="skt"><span>Agentes IA: skills, comandos y MCPs</span><b>75%</b></div><div class="trk"><div class="fill" data-v="75"></div></div></div>
+<div class="sk"><div class="skt"><span>IA: Copilot, Claude Code, OpenCode</span><b>75%</b></div><div class="trk"><div class="fill" data-v="75"></div></div></div>
+</div>
+</div>
+<p class="note">Porcentajes estimados según años de uso y nivel de dominio.</p>
+</section>
+
+<section id="educacion">
+<h2>Educación</h2>
+<ul class="edu">
+<li>Ingeniero de Sistemas<small>Corporación Universitaria Latinoamericana</small></li>
+<li>Máster en metodología ágil Scrum<small>ITERA</small></li>
+<li>Web APIs Profesionales con .NET 8<small>Udemy</small></li>
+<li>AI Capabilities and Limitations<small>Anthropic</small></li>
+<li>Diplomado en programación PHP<small>Politécnico de Colombia</small></li>
+<li>Técnico en mantenimiento de cómputo<small>SENA</small></li>
+</ul>
+</section>
+</main>
+
+<footer id="contacto"><div class="wrap contact">
+<h2>Contacto</h2>
+<a class="row" href="mailto:c-sar-torres@hotmail.com"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>c-sar-torres@hotmail.com</a>
+<a class="row" href="https://github.com/Csar27?tab=repositories" target="_blank" rel="noopener"><svg class="i f" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>GitHub: Csar27</a>
+<a class="row" href="https://www.linkedin.com/in/c%C3%A9sar-guillermo-torres-guerrero-61134b199/" target="_blank" rel="noopener"><svg class="i f" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>LinkedIn: César Guillermo Torres</a>
+<a class="row" href="tel:+573015061128"><svg class="i s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>301 506 1128</a>
+<p style="color:var(--muted)">Barranquilla, Colombia</p>
+</div></footer>
+
+<script>
+(function(){
+var r=document.documentElement;
+document.getElementById('theme').addEventListener('click',function(){var d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);r.setAttribute('data-theme',d?'light':'dark')});
+var cb=document.getElementById('copy');
+cb.addEventListener('click',function(){var m='c-sar-torres@hotmail.com';try{navigator.clipboard.writeText(m).then(function(){cb.querySelector('.lbl').textContent='¡Copiado!'},function(){cb.querySelector('.lbl').textContent=m})}catch(e){cb.querySelector('.lbl').textContent=m}setTimeout(function(){cb.querySelector('.lbl').textContent='Copiar correo'},2200)});
+var bar=document.getElementById('bar');
+addEventListener('scroll',function(){var h=r.scrollHeight-innerHeight;bar.style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true});
+var jobs=document.querySelectorAll('.job');
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});jobs.forEach(function(j){io.observe(j)})}else{jobs.forEach(function(j){j.classList.add('in')})}
+var fills=document.querySelectorAll('.fill');
+function setF(f){f.style.width=f.dataset.v+'%'}
+if('IntersectionObserver' in window){var fo=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){setF(x.target);fo.unobserve(x.target)}})},{threshold:.4});fills.forEach(function(f){fo.observe(f)})}else{fills.forEach(setF)}
+var L=[[['t','var '],['','cesar = '],['k','new '],['t','Developer'],['',' {']],
+[['','  Nombre = '],['s','"César Torres Guerrero"'],['',',']],
+[['','  Experiencia = '],['n','7'],['',','],['c',' // años']],
+[['','  Stack = [']],
+[['','    '],['s','".NET Core"'],['',', '],['s','"Angular"'],['',', '],['s','"React"'],['',',']],
+[['','    '],['s','"Node.js"'],['',', '],['s','"SQL Server"'],['',', '],['s','"Docker"'],['',', '],['s','"Azure"']],
+[['','  ],']],
+[['','  Docker = '],['k','true'],['',',']],
+[['','  Scrum = '],['k','true'],['',',']],
+[['','  UsaIA = '],['k','true']],
+[['','};']],
+[['','']],
+[['','cesar.'],['t','Construir'],['','('],['s','"soluciones escalables"'],['',');']]];
+var el=document.getElementById('code');
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function render(li,ci,cursor){var o='';for(var i=0;i<L.length;i++){if(i>li)break;var segs=L[i],left=i<li?1e9:ci;for(var j=0;j<segs.length;j++){var t=segs[j][1].slice(0,left);left-=t.length;o+=segs[j][0]?'<span class="'+segs[j][0]+'">'+esc(t)+'</span>':esc(t);if(left<=0)break}if(i<li)o+='\n'}el.innerHTML=o+(cursor?'<span class="cur"></span>':'')}
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){render(L.length-1,1e9,true)}
+else{var li=0,ci=0;(function tick(){var len=L[li].reduce(function(a,s){return a+s[1].length},0);render(li,ci,true);if(ci<len){ci++;setTimeout(tick,32)}else if(li<L.length-1){li++;ci=0;setTimeout(tick,160)}})()}
+})();
+</script>
+</body>
+</html>
