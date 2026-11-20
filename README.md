@@ -20,7 +20,7 @@ prácticas:
 3. **Se archiva y se respalda** como un solo documento.
 
 El único recurso externo son las fuentes de Google Fonts (`Bricolage Grotesque`,
-`IBM Plex Sans`, `JetBrains Mono`).
+`Instrument Serif`, `IBM Plex Sans`, `JetBrains Mono`).
 
 ---
 
@@ -56,14 +56,15 @@ Luego abre <http://localhost:8000/cesar-torres-cv.html>.
 
 | Área | Detalle |
 | --- | --- |
-| **Diseño** | Tema claro y oscuro, responsive, tipografía con fallback del sistema |
-| **Experiencia** | Línea de tiempo con entradas reveladas al hacer scroll |
-| **Portafolio** | Proyectos destacados con stack tecnológico y enlaces a código y demo |
+| **Diseño** | Estilo editorial "informe anual": cuadrícula estricta, reglas finas, secciones numeradas 01–07, etiquetas mono en mayúsculas, esquinas rectas, numerales serif (Instrument Serif). Tema claro/oscuro, responsive |
+| **Idiomas** | Conmutador ES ⇄ EN en la barra de navegación; detección por navegador, persistencia en `localStorage` y parámetro `?lang=` compartible |
+| **Experiencia** | Filas con columna de fechas + contenido, separadas por reglas finas (sin línea de tiempo) |
+| **Portafolio** | Filas numeradas con hover de color + flecha; enlaces a código y demo |
 | **IA aplicada** | Sección sobre uso de IA, agentes, skills y servidores MCP |
-| **Habilidades** | Barras de nivel animadas al entrar en pantalla |
+| **Habilidades** | Barras de progreso difuminadas (gradiente con borde suave) + palabra: Experto / Avanzado / Intermedio |
 | **Educación e idiomas** | Formación y niveles MCER (Español nativo, Inglés A2) |
 | **Contacto** | Correo con botón de copiado, GitHub, LinkedIn y teléfono |
-| **Resumen en código** | Bloque tipo C# que se "escribe" al cargar la página |
+| **Resumen en código** | Bloque tipo C# que se "escribe" al cargar la página (con respeto a `prefers-reduced-motion`) |
 
 ### Accesibilidad
 
@@ -74,8 +75,8 @@ Luego abre <http://localhost:8000/cesar-torres-cv.html>.
 - Alternativas textuales a los iconos SVG (`aria-hidden` en los decorativos).
 - `prefers-color-scheme` y `prefers-reduced-motion` respetados.
 - Foco visible en todos los elementos interactivos.
-- **Funciona sin JavaScript**: el contenido, las barras de habilidades y el
-  resumen en código ya están en el HTML.
+- **Funciona sin JavaScript**: todo el contenido, incluido el panel de datos y
+  las habilidades, está en el HTML; el español es el idioma por defecto.
 
 ### Impresión y PDF
 
@@ -84,6 +85,48 @@ fondo blanco, sin navegación ni animaciones, sin cortes de página a mitad de
 una tarjeta, y las URLs impresas junto a cada enlace.
 
 Para generar el PDF desde el navegador: `Ctrl/Cmd + P` → *Guardar como PDF*.
+
+---
+
+## Internacionalización (ES / EN)
+
+El sitio es bilingüe sin cambiar de archivo ni de ruta.
+
+### Cómo funciona
+
+- El HTML contiene el texto en **español** directamente (es el idioma por
+  defecto y el que se ve sin JavaScript).
+- Los elementos traducibles llevan el atributo `data-i18n="clave"` (para
+  `textContent`) o `data-i18n-aria="clave"` (para `aria-label`).
+- El JavaScript define dos diccionarios, `ES` y `EN`, con las mismas claves.
+- Al cambiar de idioma se recorre el DOM, se sustituye el texto y se
+  actualizan `<title>`, meta description, og:locale, og:description y el
+  JSON-LD.
+
+### Detección y persistencia
+
+Prioridad al cargar la página:
+
+1. Parámetro de URL `?lang=en` o `?lang=es`.
+2. `localStorage['cv-lang']`.
+3. Idioma del navegador (`navigator.language`).
+4. Español por defecto.
+
+Al pulsar el conmutador se guarda en `localStorage` y se escribe `?lang=` en
+la URL con `history.replaceState`, así el enlace compartido ya lleva el idioma.
+
+Compartir en inglés: <https://csar27.github.io/cv-cesar-torres/?lang=en>
+
+### Añadir o modificar traducciones
+
+1. Añade el atributo `data-i18n="mi.clave"` (o `data-i18n-aria`) al elemento.
+2. Añade `'mi.clave':'Texto en español'` al diccionario `ES`.
+3. Añade `'mi.clave':'English text'` al diccionario `EN`.
+4. El script de verificación comprueba que ambos diccionarios tengan las mismas
+   claves y que no haya valores vacíos.
+
+Los nombres propios, tecnologías y certificaciones oficiales **no se
+traducen** (`.NET`, `Azure`, `SCRUM`, nombres de empresas, etc.).
 
 ---
 
@@ -100,7 +143,7 @@ Los colores están como variables CSS al inicio del `<style>`:
   --ink:#0f1c2a;     /* texto principal */
   --muted:#55636f;   /* texto secundario */
   --line:#d8dee4;    /* bordes */
-  --accent:#0b6e8a;  /* color de marca */
+  --accent:#0d9488;  /* color de marca */
   --sun:#d9930d;     /* acento secundario */
   --code:#0d1b26;    /* fondo del bloque de código */
 }
@@ -121,14 +164,15 @@ El tema oscuro está duplicado en tres sitios. Si cambias un color, actualiza
 | --- | --- |
 | Nombre, rol y resumen | `.role` y `.lead` dentro de `<header>` |
 | Enlaces de contacto | `c-sar-torres@hotmail.com`, `github.com/Csar27`, el `tel:` |
-| Bloque de código animado | el array `L` al final del `<script>` |
+| Bloque de código animado | el array `L` al final del `<script>` y el `<pre id="code">` en el hero |
 | Estadísticas (`7+`, `8`, `CI/CD`) | la etiqueta `<dl class="stats">` |
-| Contenido de las skills | `data-v="90"` — ese número es el porcentaje; también está replicado en `style="width:90%"`, hay que cambiar los dos |
+| Experiencia laboral | los `<article class="job">` |
+| Portafolio | los `<a class="prow link">` / `<div class="prow item">` |
+| Habilidades | los `<li>` con `<b class="dots">` y `data-i18n="lv.*"` |
+| Educación e idiomas | las secciones `#educacion` e `#idiomas` |
 | Metadatos de SEO y el JSON-LD | las etiquetas `<meta>` y el `<script type="application/ld+json">` en el `<head>` |
 
-> Las barras de habilidades declaran el ancho dos veces a propósito: en el
-> atributo `data-v` (lo usa la animación) y en `style="width:…%"` (para que se
-> vean completas si el visitante llega con JavaScript desactivado).
+Las habilidades usan una barra de progreso difuminada (gradiente con borde suave) + palabra: Experto / Avanzado / Intermedio.
 
 ### 3. Imagen de perfil
 
@@ -187,10 +231,12 @@ actualizar ni vulnerabilidades de terceros que rastrear.
 Este es un CV, no una aplicación. El mantenimiento real consiste en
 actualizar el contenido. Revisa periódicamente:
 
-- [ ] Actualizar un puesto nuevo al comienzo de la línea de tiempo
+- [ ] Actualizar un puesto nuevo al comienzo de la experiencia
 - [ ] Agregar proyectos nuevos al portafolio
-- [ ] Revisar los porcentajes de las habilidades
+- [ ] Revisar los niveles de las habilidades (puntos + palabra)
+- [ ] Mantener sincronizados los diccionarios ES y EN al añadir texto
 - [ ] Cambiar el correo si dejas de usar la dirección de Hotmail
+- [ ] Actualizar metadatos de SEO y JSON-LD si cambia el rol o la ubicación
 
 ---
 
@@ -198,3 +244,5 @@ actualizar el contenido. Revisa periódicamente:
 
 Código y diseño de esta página: uso personal. Si reutilizas la estructura,
 dale crédito a [Csar27](https://github.com/Csar27).
+path">
+D:\projects\cv-cesar-torres\README.md
